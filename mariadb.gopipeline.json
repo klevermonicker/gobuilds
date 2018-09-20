@@ -1,10 +1,10 @@
 {
-"name": "build",
+"name": "build-infrastructure",
   "environment_variables": [],
-  "group" : "demo",
+  "group" : "infrastructure",
   "materials": [
     {
-      "url": "https://github.com/arvindsv/gocd-demo-config-repo-code",
+      "url": "git@github.com:communityfunded/cf-static-build.git",
       "type": "git"
     }
   ],
@@ -13,7 +13,7 @@
       "name": "build",
       "fetch_materials": true,
       "never_cleanup_artifacts": false,
-      "clean_working_directory": false,
+      "clean_working_directory": true,
       "environment_variables": [],
       "jobs": [
         {
