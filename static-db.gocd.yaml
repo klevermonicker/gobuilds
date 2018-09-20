@@ -6,20 +6,18 @@ environments:
   pipelines:
     buildtesting:
       group: infrastructure
-      label_template: "${mygit[:8]}"
-      lock_behavior: none
-      parameters:
-        branch: develop
+      #label_template: "${gitMaterial[:8]}"
+      #lock_behavior: none
       materials:
         gitMaterial:
           git: "git@communityfunded/cf-static-build.git"
-          branch: "develop"
-          auto_update: false
-          shallow_clone: true
+        #  branch: "develop"
+        #  auto_update: false
+        #  shallow_clone: true
       stages:
-        - build:
+        - build: #name of stage
           jobs:
-            build:
+            build: #name of job
               tasks:
-                -exec:
-                  command: "echo hello"
+                -exec: #Task type
+                  command: make
