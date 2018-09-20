@@ -6,3 +6,15 @@ environments:
     piplines:
       - build-testing
     pipelines:
+      start:
+        group: infrastructure
+        label_template: "${mygit[:8]}"
+        lock_behavior: none
+        parameters:
+          branch: develop
+        materials:
+          gitMaterial:
+            git: "git@communityfunded/cf-static-build.git"
+            branch: "develop"
+            auto_update: false
+            shallow_clone: true
