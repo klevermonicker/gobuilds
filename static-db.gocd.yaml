@@ -18,3 +18,10 @@ environments:
           branch: "develop"
           auto_update: false
           shallow_clone: true
+      stages:
+        - build:
+          jobs:
+            build:
+              tasks:
+                -exec:
+                  command: "echo hello"
