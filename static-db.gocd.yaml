@@ -3,10 +3,8 @@ environments:
   dev:
     environment_variables:
       DEPLOYMENT: dev
-    pipelines:
-      - build-testing
   pipelines:
-    build-testing:
+    buildtesting:
       group: infrastructure
       label_template: "${mygit[:8]}"
       lock_behavior: none
