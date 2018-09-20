@@ -1,6 +1,6 @@
 format_version: 3
 environments:
-  dev:
+  Dev:
     environment_variables:
       DEPLOYMENT: dev
     piplines:
