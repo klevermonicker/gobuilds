@@ -6,7 +6,7 @@ environments:
     pipelines:
       - build-testing
   pipelines:
-    start:
+    build-testing:
       group: infrastructure
       label_template: "${mygit[:8]}"
       lock_behavior: none
