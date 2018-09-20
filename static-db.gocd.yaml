@@ -11,9 +11,9 @@ environments:
       materials:
         gitMaterial:
           git: "git@communityfunded/cf-static-build.git"
-        #  branch: "develop"
-        #  auto_update: false
-        #  shallow_clone: true
+          branch: "develop"
+          auto_update: false
+          shallow_clone: true
       stages:
         - build: #name of stage
           jobs:
