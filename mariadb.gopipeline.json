@@ -33,6 +33,7 @@
                 "id": "docker-task",
                 "version": "1"
               },
+              "on_cancel" : null,
               "configuration": [
                 {
                   "key": "DockerFile",
@@ -58,7 +59,6 @@
                   "value": "false"
                 }
               ]
-              "on_cancel" : null,
             }
           ]
         }
