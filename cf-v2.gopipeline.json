@@ -1,0 +1,58 @@
+{
+"name": "CF-V2",
+  "environment_variables": [
+    "name": "branch"
+    "value": "citest"
+  ],
+  "group" : "cf-v2",
+  "materials": [
+    {
+      "url": "git@github.com:communityfunded/cf-v2",
+      "type": "git",
+      "branch": "${env.branch}"
+    }
+  ],
+  "stages": [
+    {
+      "name": "pre-build",
+      "fetch_materials": true,
+      "never_cleanup_artifacts": false,
+      "clean_working_directory": true,
+      "environment_variables": [],
+      "jobs": [
+        {
+          "name": "pre-build",
+          "environment_variables": [],
+          "tabs": [],
+          "resources": [],
+          "artifacts": [],
+          "properties": [],
+          "run_instance_count": null,
+          "timeout": 0,
+          "tasks": [
+            {
+              "type": "exec",
+              "run_if": "passed",
+              "on_cancel" : null,
+              "command": "sh",
+              "arguments": [
+                "-c",
+                "cp -f ./ci.env ./.env"
+              ]
+            },
+            {
+              "type": "exec",
+              "run_if": "passed",
+              "on_cancel" : null,
+              "command": "sh",
+              "arguments": [
+                "-c",
+                "SHORT_BUILD_ID=$(git rev-parse --short HEAD); sed -i \"s/{{SHORT_BUILD_ID}}/${SHORT_BUILD_ID}/g\" ./.env"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
