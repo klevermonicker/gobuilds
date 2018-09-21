@@ -1,0 +1,69 @@
+{
+"name": "build-infrastructure",
+  "environment_variables": [],
+  "group" : "infrastructure",
+  "materials": [
+    {
+      "url": "git@github.com:communityfunded/cf-static-build.git",
+      "type": "git",
+      "branch": "develop"
+    }
+  ],
+  "stages": [
+    {
+      "name": "build",
+      "fetch_materials": true,
+      "never_cleanup_artifacts": false,
+      "clean_working_directory": true,
+      "environment_variables": [],
+      "jobs": [
+        {
+          "name": "build",
+          "environment_variables": [],
+          "tabs": [],
+          "resources": [],
+          "artifacts": [],
+          "properties": [],
+          "run_instance_count": null,
+          "timeout": 0,
+          "tasks": [
+            {
+              "type": "plugin",
+              "run_if": "passed",
+              "plugin_configuration": {
+                "id": "docker-task",
+                "version": "1"
+              },
+              "on_cancel" : null,
+              "configuration": [
+                {
+                  "key": "DockerFile",
+                  "value": "lambda/mariadb"
+                },
+                {
+                  "key": "IsDockerPush",
+                  "value": "false"
+                },
+                {
+                  "key": "DockerBuildTag"
+                },
+                {
+                  "key": "TagWithPipelineLabel",
+                  "value": "true"
+                },
+                {
+                  "key": "IsDockerBuild",
+                  "value": "true"
+                },
+                {
+                  "key": "IsDockerRun",
+                  "value": "false"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
