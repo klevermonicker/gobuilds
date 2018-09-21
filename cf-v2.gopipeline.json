@@ -1,24 +1,27 @@
 {
-"name": "build-infrastructure",
-  "environment_variables": [],
-  "group" : "infrastructure",
+"name": "CF-V2",
+  "environment_variables": [
+    "name": "branch"
+    "value": "citest"
+  ],
+  "group" : "cf-v2",
   "materials": [
     {
-      "url": "git@github.com:communityfunded/cf-static-build.git",
+      "url": "git@github.com:communityfunded/cf-v2",
       "type": "git",
-      "branch": "develop"
+      "branch": "${env.branch}"
     }
   ],
   "stages": [
     {
-      "name": "build",
+      "name": "pre-build",
       "fetch_materials": true,
       "never_cleanup_artifacts": false,
       "clean_working_directory": true,
       "environment_variables": [],
       "jobs": [
         {
-          "name": "build",
+          "name": "pre-build",
           "environment_variables": [],
           "tabs": [],
           "resources": [],
@@ -28,37 +31,23 @@
           "timeout": 0,
           "tasks": [
             {
-              "type": "plugin",
+              "type": "exec",
               "run_if": "passed",
-              "plugin_configuration": {
-                "id": "docker-task",
-                "version": "1"
-              },
               "on_cancel" : null,
-              "configuration": [
-                {
-                  "key": "DockerFile",
-                  "value": "lambda/mariadb"
-                },
-                {
-                  "key": "IsDockerPush",
-                  "value": "false"
-                },
-                {
-                  "key": "DockerBuildTag"
-                },
-                {
-                  "key": "TagWithPipelineLabel",
-                  "value": "true"
-                },
-                {
-                  "key": "IsDockerBuild",
-                  "value": "true"
-                },
-                {
-                  "key": "IsDockerRun",
-                  "value": "false"
-                }
+              "command": "sh",
+              "arguments": [
+                "-c",
+                "cp -f ./ci.env ./.env"
+              ]
+            },
+            {
+              "type": "exec",
+              "run_if": "passed",
+              "on_cancel" : null,
+              "command": "sh",
+              "arguments": [
+                "-c",
+                "SHORT_BUILD_ID=$(git rev-parse --short HEAD); sed -i \"s/{{SHORT_BUILD_ID}}/${SHORT_BUILD_ID}/g\" ./.env"
               ]
             }
           ]
