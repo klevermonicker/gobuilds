@@ -38,7 +38,7 @@
               "configuration": [
                 {
                   "key": "DockerFile",
-                  "value": "lambda/mariadb"
+                  "value": "mariadb"
                 },
                 {
                   "key": "IsDockerPush",
