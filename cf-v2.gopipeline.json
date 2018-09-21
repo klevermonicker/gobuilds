@@ -46,6 +46,26 @@
                 "-c",
                 "SHORT_BUILD_ID=$(git rev-parse --short HEAD); sed -i \"s/{{SHORT_BUILD_ID}}/${SHORT_BUILD_ID}/g\" ./.env"
               ]
+            },
+            {
+              "type": "exec",
+              "run_if": "passed",
+              "on_cancel" : null,
+              "command": "sh",
+              "arguments": [
+                "-c",
+                "aws ecr --no-include-email get-login"
+              ]
+            },
+            {
+              "type": "exec",
+              "run_if": "passed"
+              "on_cancel": null,
+              "command": "sh",
+              "arguments": [
+                "-c",
+                "docker-compose -p cfci -f docker-compose.yml -f docker-compose-integration.yml up -d xray cf-admin cf-public graphql integration-tests unit-tests uitests"
+              ]
             }
           ]
         }
