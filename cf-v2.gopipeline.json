@@ -1,17 +1,12 @@
 {
 "name": "CF-V2",
-  "environment_variables": [
-    {
-    "name": "branch",
-    "value": "citest"
-    }
-  ],
+  "environment_variables": [],
   "group" : "cf-v2",
   "materials": [
     {
       "url": "git@github.com:communityfunded/cf-v2",
       "type": "git",
-      "branch": "${env.branch}"
+      "branch": "citest"
     }
   ],
   "stages": [
