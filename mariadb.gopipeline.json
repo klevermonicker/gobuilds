@@ -5,7 +5,8 @@
   "materials": [
     {
       "url": "git@github.com:communityfunded/cf-static-build.git",
-      "type": "git"
+      "type": "git",
+      "branch": "develop"
     }
   ],
   "stages": [
