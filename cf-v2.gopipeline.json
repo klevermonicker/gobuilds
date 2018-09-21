@@ -1,8 +1,10 @@
 {
 "name": "CF-V2",
   "environment_variables": [
-    "name": "branch"
+    {
+    "name": "branch",
     "value": "citest"
+    }
   ],
   "group" : "cf-v2",
   "materials": [
