@@ -6,7 +6,7 @@
     {
       "url": "git@github.com:communityfunded/cf-v2",
       "type": "git",
-      "branch": "citest"
+      "branch": "feature/build-speed-up"
     }
   ],
   "stages": [
